@@ -1,0 +1,295 @@
+/* ============================================
+   Kyoto Tea House - Main Styles
+   Core custom properties and base styles
+   ============================================ */
+
+:root {
+  /* Primary Colors */
+  --color-sumi: #1a1a1a;
+  --color-shiro: #faf9f6;
+  --color-kouro: #c4b5a0;
+  
+  /* Accent Colors */
+  --color-matcha: #7d8f69;
+  --color-sakura: #e8d5d5;
+  --color-indigo: #3d4c53;
+  
+  /* Functional Colors */
+  --color-border: #e5e3de;
+  --color-muted: #8b8885;
+  
+  /* Typography */
+  --font-primary: 'Georgia', 'Times New Roman', serif;
+  --font-display: 'Palatino Linotype', 'Book Antiqua', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Fluid Typography Scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-base: 1.6;
+  --leading-relaxed: 1.8;
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-base: 0;
+  --tracking-wide: 0.05em;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.8s ease;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ============================================
+   Reset & Base Styles
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  color: var(--color-sumi);
+  background-color: var(--color-shiro);
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-sumi);
+}
+
+h1 {
+  font-size: var(--text-3xl);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+h4 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-xs);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  color: var(--color-sumi);
+}
+
+em {
+  font-style: italic;
+  color: var(--color-matcha);
+}
+
+blockquote {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-style: italic;
+  border-left: 3px solid var(--color-matcha);
+  padding-left: var(--space-md);
+  margin: var(--space-lg) 0;
+  color: var(--color-indigo);
+  line-height: var(--leading-relaxed);
+}
+
+a {
+  color: var(--color-indigo);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-sumi);
+}
+
+/* ============================================
+   Skip Link (Accessibility)
+   ============================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-sumi);
+  color: var(--color-shiro);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+  outline: 2px solid var(--color-matcha);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Preloader
+   ============================================ */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-shiro);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.is-complete {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-svg {
+  width: 80px;
+  height: 80px;
+  animation: rotate 2s linear infinite;
+}
+
+.preloader-circle {
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+.preloader-text {
+  margin-top: var(--space-md);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 251;
+  }
+  50% {
+    stroke-dashoffset: 62.75;
+  }
+  100% {
+    stroke-dashoffset: 251;
+  }
+}
+
+/* ============================================
+   Motion Sensitivity Support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .preloader-svg {
+    animation: none;
+  }
+  
+  .preloader-circle {
+    animation: none;
+    stroke-dashoffset: 62.75;
+  }
+}
+
+/* ============================================
+   Focus States (Accessibility)
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-matcha);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-matcha);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Selection Color
+   ============================================ */
+
+::selection {
+  background-color: var(--color-matcha);
+  color: var(--color-shiro);
+}
+
+::-moz-selection {
+  background-color: var(--color-matcha);
+  color: var(--color-shiro);
+}
